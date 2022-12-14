@@ -6,5 +6,4 @@ from ml.iris import views
 
 urlpatterns = [
     url(r'iris', views.iris),
-
 ]

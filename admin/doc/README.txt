@@ -1,28 +1,35 @@
-## 가설
+## 가설(hypothesis)
 
-p-value (확률 값) / 타겟 값이 나올 확률:
-유의확률 : 실제로는 집단 간 차이가 없는데 우연히 차이가 있는 데이터가 추출될 확률
-귀무 가설이 맞다는 전제 하에, 표본에서 실제로 관측된 통계치와 같거나 더 극단적인 통계치가 관측될 확률
+p-value (확률값)
+귀무 가설(null hypothesis)이 맞다는 전제 하에,
+표본에서 실제로 관측된 통계치와 '같거나 더 극단적인' 통계치가 관측될 확률이다.
 
+** 귀무 가설(歸無假說, 영어: null hypothesis, 기호 H0) 또는 영 가설(零假說)
+통계학에서 처음부터 버릴 것을 예상하는 가설이다.
+차이가 없거나 의미있는 차이가 없는 경우의 가설이며
+이것이 맞거나 맞지 않다는 통계학적 증거를 통해 증명하려는 가설이다.
+예를 들어 범죄 사건에서 용의자가 있을 때
+형사는 이 용의자가 범죄를 저질렀다는 추정인 대립가설을 세우게 된다.
+이때 귀무가설은 용의자는 무죄라는 가설이다.
+통계적인 방법으로 가설검정(hypothesis test)을 시도할 때 쓰인다.
+로널드 피셔가 1966년에 정의하였다
 
-hypothesis
+기술통계 - 추론통계 = 학습(Learning)
 
-기술통계 description / 데이터 사이언스
-추론통계 inference / 학습 learning
-기술 추론은 상속관계 /  기술이 있어야 추론이 가능
-기술 -(가설)- 추론
+지도 Learning (레이블)
+출력값(=타깃)
+ - int = 불연속 = 카테고리컬 = 분류 classification
+ - float = 연속 = 시퀀셜 = 회귀 regression
 
-가설검증 (test)
+확률변수
+기댓값
+모델
+## 그라운드 투루 (Ground-Truth)
+https://mac-user-guide.tistory.com/14
+https://towardsdatascience.com/in-ai-the-objective-is-subjective-4614795d179b
+ "label"은 정답지라고도 불리듯이 답이 명확하게 정해져 있는 값
+ "ground-truth"은 '우리가 정한 정답', '우리의 모델이 우리가 원하는 답으로 예측해주길 바라는 답'
 
-머신 -> 딥러닝
-
-##메소드 상태함수
-차이 : 공유하는 설정값이 있냐 없냐
-
-##함수 / 식 차이
-함수 : (핸들링 가능) 식 : (바로 나옴 동시에)
-
-## GT -> lavel : 명확하게 정해져 있는값
 
 ## 대수학(algebra)
 변수는 feature 와 target 으로 나뉜다.
@@ -48,8 +55,7 @@ Machine-Learning has a statistics, deep learning.
 The difference lies in the existence of evidence.
 머신러닝은 통계와 딥러닝의 집합이다.
 머신러닝과 딥러닝의 차이점은 신경망의 유무이다.
-
--- ML 을 위한 통계개념
+** ML 을 위한 통계개념
 표본
 우도함수
 대수의 법칙
@@ -57,10 +63,20 @@ The difference lies in the existence of evidence.
 분포
 랜덤
 
+학습목표
+
+## 선형회귀(Linear Regression)을 코드로 구현한다.
+핵심키워드: 선형회귀(Linear Regression) 가설(Hypothesis) 비용함수(Cost function)
+
 ## 정규화(Normalization)
 https://heeya-stupidbutstudying.tistory.com/entry/%ED%86%B5%EA%B3%84-%EC%A0%95%EA%B7%9C%ED%99%94%EC%99%80-%ED%91%9C%EC%A4%80%ED%99%94
 feature 의 변환은 표준화(Z-score 정규화)와 정규화가 있다.
 아웃라이어가 있으면 표준화 나머지는 정규화가 낫다.
+
+## 추론과 예측
+https://gentlej90.tistory.com/19
+https://koreapy.tistory.com/1108
+추론과 예측의 차이는 답이 라벨인가, 그라운드트루스 인가이다.
 
 ## 학습(Learning)
 통계학에서 학습은 추정문제 해결과정(=추론)이다.
@@ -70,14 +86,11 @@ learning 은 target 을 구하는 modeling 이다.
 비지도학습은 샘플을 사용하지 않는다.
 
 ## 확률(Probability)
-선험적 통계 = 사전, 수학적 확률, 식 -> 연역법 모델 통해 (미래 예측) 연역 모델로 예측
-경험적 통계 = 사후,  통계적 확률, 식 * "큰수의 법칙" -> 귀납법  데이터로 모델 만드는게 귀납
+선험적 통계 = 사전, 수학적 확률, 식 -> 연역법
+경험적 통계 = 사후,  통계적 확률, 식 * "큰수의 법칙" -> 귀납법
 기대값 = 계수 * 변수 + 상수
 
-
-
-
-지도학습 분류 classification / 회귀 regress 로 나뉜다.
+지도학습 분류 classification / 회귀 regression 로 나뉜다.
 model 은 var 를 잡아내서, class 를 시도한다.
 
 ## (확률) 분포는 함수다
@@ -90,6 +103,10 @@ model 은 var 를 잡아내서, class 를 시도한다.
 # 연역과 귀납
 연역은 가정된 전제이다.
 귀납은 개인적 경험이다.
+
+## 인코딩(encoding)
+문자 -> 숫자
+
 
 # 편향과 편차
 https://opentutorials.org/module/3653/22071
@@ -137,7 +154,6 @@ https://m.blog.naver.com/samsjang/220978650404
 ## 불순도란 다양한 범주들의 개체들이 얼마나 포함되었는가 정도이다.
 여러가지 클래스가 섞여있는 정도이다. 반대로 순수도(purity)는 같은 클래스끼리
 얼마나 많이 포함되어 있는지를 말한다.
-factor 뒤섞여 있는것
 https://computer-science-student.tistory.com/60
 
 ## criterion 은 표준이다. 동의어로는
@@ -152,13 +168,20 @@ standard, normal, norm, average, level 이 있다.
 
 ## 산술급수 와 기하급수
 
-## 인코딩 디코딩
-encoding : 문자 -> 숫자
-decoding : 숫자 -> 문자
 
-## 인코딩 종류
-원핫인코딩 타깃값을 해당 클래스만 1 로 나머지 0으로 만드는 것
+##
+fit_transform()은 train dataset에서만 사용됩니다
+transform()은 test data에 적용하기 위해 를 사용한다.
 
-## tensoFlow transform
-데이터 전처리 /
+## 행렬 연산(Matrix Operations)
+
+ 행렬 표기법 - Matrix Notation
+
+ 행렬 덧셈 - Matrix Sum
+ 스칼라 곱 - Scalar Multiple
+ 행렬 곱 - Matrix Multiplication
+ 행렬의 전치 - The transpose of a matrix
+
+## 선형회귀
+diff: 로지스틱회귀
 

@@ -1,3 +1,4 @@
+import numpy as np
 import pandas as pd
 from sklearn import datasets
 from sklearn.preprocessing import OneHotEncoder
@@ -10,26 +11,19 @@ from tensorflow.python.framework.ops import get_default_graph
 class IrisService(object):
 
     def __init__(self):
+        global model , graph, target_names
+        model = load_model(r'C:\Users\AIA\project\jdango_new\ml\iris\save\iris_model.h5')
 
-        #self.model = load_model('./save/iris_model_h5')
-        self.graph = get_default_graph()
-        self.target_names = datasets.load_iris().target_names
-        self.SepalLengthCm = None
-        self.SepalWidthCm = None
-        self.PetalLengthCm = None
-        self.PetalWidthCm = None
-    def hook(self):
-
-        self.service_model()
+        target_names = datasets.load_iris().target_names
 
 
-    def service_model(self):
-        pass
+    def service_model(self, features):
 
-    def print(self):
+        features = np.reshape(features,(1,4))
+        Y_prob = model.predict(features, verbose=0)
+        predicted = Y_prob.argmax(axis=-1) # p-vla 가장 높은 것
 
-        print(self.PetalWidthCm)
-
+        return predicted[0] # 타입 :  <class 'numpy.int64'>
 
 
 '''
@@ -43,7 +37,7 @@ iris_menu = ["Exit", #0
                 "hook",#1
              ]
 iris_lambda = {
-    "1" : lambda x: x.hook(),
+    "1" : lambda x: x.service_model([5.1,3.5,1.4,0.1])
 
 }
 if __name__ == '__main__':

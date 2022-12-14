@@ -43,7 +43,7 @@ class IrisModel(object):
         model.fit(X,Y_1hot,epochs=300, batch_size=10)
         print('Model Training is completed')
 
-        file_name = 'save/iris_model_h5'
+        file_name = './save/iris_model.h5'
         model.save(file_name)
         print(f'Model Save in {file_name}')
 
@@ -68,10 +68,10 @@ iris_menu = ["Exit", #0
              ]
 iris_lambda = {
     "1" : lambda x: x.hook(),
-
 }
+
 if __name__ == '__main__':
-    iris = Iris()
+    iris = IrisModel()
 
 
     while True:
