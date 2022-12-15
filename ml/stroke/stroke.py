@@ -55,7 +55,7 @@ class Stroke:
     save = f"./save/stroke"
 
     def __init__(self):
-        self.stroke = pd.read_csv(f'{self.data}/healthcare-dataset-stroke-data.csv')
+        self.stroke = pd.read_csv(r'C:\Users\AIA\project\jdango_new\ml\iris\data\iris\Iris.csv')
         self.my_stroke = None
         self.adult_stoke = None
         self.target = None
@@ -66,13 +66,13 @@ class Stroke:
         self.y_test = None
 
     def hook(self):
-        self.rename_meta()
-        self.interval()
-        self.norminal()
-        self.set_target()
-        self.partition()
-        self.learning(flag='gini')
-
+        #self.rename_meta()
+        #self.interval()
+        #self.norminal()
+        #self.set_target()
+        #self.partition()
+        #self.learning(flag='gini')
+         self.spec()
 
 
     '''
