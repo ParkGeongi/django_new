@@ -64,7 +64,7 @@ class DcGan(nn.Module):
     def show_face(self):
 
         self.dataset = dset.ImageFolder(root=self.dataroot,
-                                   transform=transforms.Compose([
+                                        transform=transforms.Compose([
                                        transforms.Resize(self.image_size),
                                        transforms.CenterCrop(self.image_size),
                                        transforms.ToTensor(),
