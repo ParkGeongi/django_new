@@ -14,7 +14,7 @@ class FashionService(object):
         class_names = ['T-shirt/top', 'Trouser', 'Pullover', 'Dress', 'Coat',
                        'Sandal', 'Shirt', 'Sneaker', 'Bag', 'Ankle boot']
 
-    def service_model(self,i)->int:
+    def service_model(self,i) -> '':
         #model = load_model(os.path.join(os.path.abspath("save"), "fashion_model.h5"))
         model = load_model(r'C:\Users\AIA\project\jdango_new\ml\mnist\save\fashion_model.h5')
         (train_images, train_labels), (test_images, test_labels) = keras.datasets.fashion_mnist.load_data()

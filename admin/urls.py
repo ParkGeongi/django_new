@@ -23,5 +23,6 @@ urlpatterns = [
     path('blog/',include('blog.busers.urls')),
     path('ml/', include('ml.iris.urls')),
     path('ml/', include('ml.stroke.urls')),
-    path('ml/', include('ml.mnist.urls'))
+    path('ml/', include('ml.mnist.urls')),
+    path('ml/', include('ml.number.urls'))
 ]
