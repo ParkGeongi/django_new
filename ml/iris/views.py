@@ -40,12 +40,15 @@ def iris(request):
 
         return JsonResponse({'result': resp})
     elif request.method == 'GET':
-        ls = []
-        data = request.GET['id']
-        print(type(data))
 
-'''
-        result = IrisService().service_model(ls)
+        SepalLengthCm = float(request.GET['SepalLengthCm'])
+        SepalWidthCm = float(request.GET['SepalWidthCm'])
+        PetalLengthCm = float(request.GET['PetalLengthCm'])
+        PetalWidthCm = float(request.GET['PetalWidthCm'])
+
+
+
+        result = IrisService().service_model([SepalLengthCm,SepalWidthCm,PetalLengthCm,PetalWidthCm])
         print(f'찾는 품종 : : {result}')
         if result == 0:
             resp = 'setosa / 부채붓꽃'
@@ -57,7 +60,7 @@ def iris(request):
             resp = 'virginica / 버지니카'
             print(resp)
         return JsonResponse({'result': resp})
-'''
+
 
 
 

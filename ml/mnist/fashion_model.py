@@ -8,6 +8,9 @@ from tensorflow import keras
 
 
 class FashionModel(object):
+    def __init__(self):
+        global model
+        model = None
 
 
     def hook(self):
@@ -21,7 +24,7 @@ class FashionModel(object):
 
 
 
-    def create_model(self):
+    def create(self):
         (train_images,train_labels),(test_images,test_labels) = keras.datasets.fashion_mnist.load_data()
         plt.figure()
         plt.imshow(train_images[10])
@@ -45,18 +48,12 @@ class FashionModel(object):
 
 
 
-'''
- --- 1.Shape ---
-(150, 6)
- --- 2.Features ---
-Index(['Id', 'SepalLengthCm', 'SepalWidthCm', 'PetalLengthCm', 'PetalWidthCm',
-       'Species'],
-'''
+
 fashion_menu = ["Exit", #0
                 "hook",#1
              ]
 fashion_lambda = {
-    "1" : lambda x: x.create_model(),
+    "1" : lambda x: x.create(),
 }
 
 if __name__ == '__main__':

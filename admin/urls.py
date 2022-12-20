@@ -24,5 +24,6 @@ urlpatterns = [
     path('ml/', include('ml.iris.urls')),
     path('ml/', include('ml.stroke.urls')),
     path('ml/', include('ml.mnist.urls')),
-    path('ml/', include('ml.number.urls'))
+    path('ml/', include('ml.number.urls')),
+    path('webcrawler/', include('webcrawler.urls'))
 ]
