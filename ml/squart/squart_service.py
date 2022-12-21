@@ -5,6 +5,8 @@ from matplotlib import pyplot as plt
 from sklearn.metrics import confusion_matrix
 from sklearn.model_selection import train_test_split
 import seaborn as sns
+from sklearn.preprocessing import OneHotEncoder
+
 
 class SquartService(object):
     def __init__(self):
@@ -32,7 +34,7 @@ class SquartService(object):
         print(f'###################### 예측 값 : {pred}')
         print(f'###################### 실제 값 : {y_test.loc[i]}')
     def confusoin_matrix(self):
-        model = load_model(r'C:\Users\AIA\project\jdango_new\ml\squart\save\squart_model2.h5')
+        model = load_model(r'C:\Users\AIA\project\jdango_new\ml\squart\save\squart_model3.h5')
         df = pd.read_csv(r'C:\Users\AIA\project\jdango_new\ml\squart\data\tt.csv')
 
         X = df[
@@ -46,13 +48,19 @@ class SquartService(object):
 
 
         X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size = 0.99, stratify = Y)
-        print(X_test)
-        print(Y_test)
-        Y_pred = model.predict(X_test)
+
+        Y_train = Y_train.to_numpy()
+        Y_test = Y_test.to_numpy()
+        enc = OneHotEncoder()
+        Y_train_hot = enc.fit_transform(Y_train.reshape(-1, 1)).toarray()
+        Y_test_hot = enc.fit_transform(Y_test.reshape(-1, 1)).toarray()
+        print(Y_train_hot)
+
+        Y_pred = model.predict(np.array(X_test))
         Y_pred = np.array(Y_pred)
-        Y_test = np.array(Y_test)
-        Y_pred = (Y_pred > 0.5) * 1
-        matrix = confusion_matrix(Y_pred.argmax(axis=1), Y_test.argmax(axis=1))
+
+
+        matrix = confusion_matrix(Y_pred.argmax(axis=1), Y_test_hot.argmax(axis=1))
         sns.heatmap(matrix, annot=True, cmap='Blues')
         plt.show()
 

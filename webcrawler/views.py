@@ -15,8 +15,9 @@ from webcrawler.services import ScrapService
 def naver(request):
 
     #print(f"######## GET id is {request.GET['id']} ########")
-    index = int(request.GET['id']) -1
-    a = ScrapService().naver_movie_review(index)
+    #index = int(request.GET['id']) -1
+    a = ScrapService().naver_movie_review()
+
     print(f'GET 리턴 결과 : {a}')
     return JsonResponse(
         {'result': a})

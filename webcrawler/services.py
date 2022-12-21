@@ -54,11 +54,20 @@ class ScrapService(ScrapVO):
         arg.dict_to_dataframe()
         arg.dataframe_to_csv()  # csv파일로 저장
 
-    def naver_movie_review(self,i):
+    def naver_movie_review(self):
 
         if os.path.isfile(file_path) == True:
             df = pd.read_csv(file_path)
-            return df.columns[i]
+
+            result = [{'rank' : i+1 , 'title' : df.columns[i]} for i in range(50)]
+            print(result)
+            #result = [{'rank' : f'{i+1}', 'title' : f'{j}'} for i ,j in enumerate(df)]
+
+
+
+
+            return result
+
 
         else:
             driver = webdriver.Chrome(driverpath)
@@ -71,7 +80,9 @@ class ScrapService(ScrapVO):
                 wr.writerows(products)
             driver.close()
             df = pd.read_csv(file_path)
-            return df.columns[i]
+            return df.columns[0]
 
-
+if __name__ == '__main__':
+    s = ScrapService()
+    s.naver_movie_review()
 

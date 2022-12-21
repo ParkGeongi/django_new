@@ -1,9 +1,12 @@
+import numpy as np
 import pandas as pd
 
 from keras import Sequential
 from keras.layers import Dense
+from keras.utils import np_utils
 from matplotlib import pyplot as plt
 from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 from tensorflow import keras
 
 class SquartModel(object):
@@ -16,7 +19,7 @@ class SquartModel(object):
         print(df.sample(5))
     def split(self):
         df = pd.read_csv(r'C:\Users\AIA\project\jdango_new\ml\squart\data\증가증가5개라벨.csv')
-        train, test = train_test_split(df, test_size=0.2)
+        train, test = train_test_split(df, test_size=0.3)
         #train, val = train_test_split(train, test_size=0.15)
         X_train = train[
             ['x[0]', 'x[1]', 'x[2]', 'x[3]', 'x[4]', 'x[5]', 'x[6]', 'x[7]', 'x[8]', 'x[9]', 'x[10]', 'x[11]', 'x[12]',
@@ -42,30 +45,34 @@ class SquartModel(object):
         y_test = test.label  # output value of test data
 
 
-        print(X_train.shape)
 
-        print(X_test.shape)
         return X_train, y_train,X_test, y_test
     def modeling(self):
         X_train, y_train,X_test, y_test=self.split()
+        y_train= y_train.to_numpy()
+        y_test = y_test.to_numpy()
+        enc = OneHotEncoder()
+        Y_train_hot = enc.fit_transform(y_train.reshape(-1, 1)).toarray()
+        Y_test_hot = enc.fit_transform(y_test.reshape(-1, 1)).toarray()
+        print(Y_train_hot)
 
         model = Sequential()
 
-        model.add(Dense(200, input_dim=50, activation='relu'))
+        model.add(Dense(128, input_dim=50, activation='relu'))
         keras.layers.BatchNormalization()
-        model.add(Dense(100, activation='relu'))
+        model.add(Dense(64, activation='relu'))
 
         model.add(Dense(5, activation='softmax'))
 
         model.compile(optimizer='adam',
-                      loss='sparse_categorical_crossentropy',
+                      loss='categorical_crossentropy',
                       metrics=['accuracy'])
 
 
-        history1 = model.fit(X_train, y_train,batch_size=16, epochs=13,validation_data=(X_test, y_test))
+        history1 = model.fit(X_train, Y_train_hot,batch_size=16, epochs=15,validation_data=(X_test, Y_test_hot))
         #test_loss, test_acc = model.evaluate(X_test, y_test)
         #print('테스트 정확도:', test_acc)
-        test_loss, test_acc = model.evaluate(X_test, y_test)
+        test_loss, test_acc = model.evaluate(X_test, Y_test_hot)
         print(f'###############val loss {test_loss}')
         print(f'#################val acc {test_acc}')
         acc = history1.history['accuracy']
@@ -90,7 +97,7 @@ class SquartModel(object):
         plt.legend()
         plt.show()
 
-        file_name = './save/squart_model2.h5'
+        file_name = './save/squart_model3.h5'
         model.save(file_name)
         print(f'Model Save in {file_name}')
 
